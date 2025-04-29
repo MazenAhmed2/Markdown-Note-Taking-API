@@ -1,4 +1,8 @@
 import model from '../models/notes.js'
+import path from 'path'
+import showdown from 'showdown'
+import fs from 'fs'
+
 
 export default {
   getAllNotes : async function (req, res){
@@ -14,9 +18,16 @@ export default {
     try {
       // Parse note ID
       const id = req.params.id 
-      
-      // Send response
-      res.status(200).json((await model.find({_id : id}))[0])
+
+      const {filename} = (await model.find({_id : id}))[0]
+    
+      let file = fs.readFileSync(path.join(import.meta.dirname, '..', 'uploads', filename))
+
+      let converter = new showdown.Converter()
+      let result = converter.makeHtml(file.toString())
+
+      res.set('Content-Type', 'text/html')
+      res.status(200).send(result)
     } catch(err){
       console.log(err)
       res.status(500).json({success : false})

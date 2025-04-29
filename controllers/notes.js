@@ -22,4 +22,21 @@ export default {
       res.status(500).json({success : false})
     }
   }, 
+
+  uploadNote : async function (req, res){
+    try {
+      // Parse Note title and filename
+      const title = req.body.title
+      const filename = req.file.filename
+
+      // Insert in db
+      let response = await model.insertOne({title, filename})
+
+      // Send response
+      res.status(200).json(response)
+    } catch(err){
+      console.log(err)
+      res.status(500).json({success : false})
+    }
+  }, 
 }

@@ -4,7 +4,7 @@ import config from "../config.js";
 mongoose.connect(config.DB_URL);
 
 const schema = mongoose.Schema({
-  originalName: String,
+  title: String,
   filename: String,
 });
 

@@ -63,10 +63,11 @@ export default {
 
         // Get filename from db
         const { filename } = (await model.find({_id : id}))[0]
-        
-        console.log(await model.deleteOne({ _id: id }))
 
-        // Get the file from the disk
+        // Delete note from db
+        await model.deleteOne({ _id: id })
+
+        // Delete note from disk
         fs.rmSync(path.join(import.meta.dirname, "..", "uploads", filename)
         );
 

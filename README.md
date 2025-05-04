@@ -26,3 +26,79 @@ Built with Node.js and Express, this application allows users to store notes in 
    ```bash
    git clone https://github.com/MazenAhmed2/Markdown-Note-Taking-API.git
    cd Markdown-Note-Taking-API
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+
+   Create a `.env` file in the root directory and add the following:
+
+   ```env
+   PORT=3000
+   DB_URL=your_mongodb_connection_string
+   ```
+
+4. **Start the server**:
+
+   ```bash
+   npm start
+   ```
+
+   The server will run on `http://localhost:3000`.
+
+## API Endpoints
+
+### Create a New Note
+
+- **URL**: `POST /api/notes`
+- **Body Parameters**:
+  - `title` (string): Title of the note.
+  - `content` (string): Markdown content of the note.
+- **Response**: Created note object.
+
+### Get All Notes
+
+- **URL**: `GET /api/notes`
+- **Response**: Array of all notes.
+
+### Get a Note by ID
+
+- **URL**: `GET /api/notes/:id`
+- **Response**: Note object with the specified ID.
+
+### Delete a Note
+
+- **URL**: `DELETE /api/notes/:id`
+- **Response**: Success message upon deletion.
+
+### Render Markdown to HTML
+
+- **URL**: `GET /api/notes/:id`
+- **Response**: HTML-rendered content of the note.
+
+## Project Structure
+
+```
+├── controllers
+│   └── notes.js
+|   └── check.js
+├── models
+│   └── notes.js
+├── routes
+│   └── notes.js
+|   └── check.js
+├── .env
+├── .gitignore
+├── index.js
+├── package.json
+└── README.md
+```
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
